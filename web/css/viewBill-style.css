@@ -1,0 +1,53 @@
+.breadcrumb_part .breadcrumb_iner h2 {
+    font-size: 40px;
+    line-height: 1.2;
+    color: #fff;
+    font-weight: 500;
+    font-family: 'Special Elite', cursive;
+    letter-spacing: 10px;
+}
+.breadcrumb_part {
+    height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to right,rgb(145, 176, 142),rgb(46, 165, 115));
+}
+
+.cart_inner {
+    width: 60%;
+    border: dotted 2px rgb(121, 52, 121);
+    box-shadow: bisque;
+}
+
+h3 {
+    width: 100%;
+    padding: 40px 60px;
+}
+
+.cart_inner .table thead tr th {
+    font-weight: bold;
+}
+
+.backtohome {
+    text-align: center;
+    margin-bottom: 100px;
+}
+
+.backtohome input {
+    margin-right: 50px;
+    outline: none;
+    border: none;
+    background-color: pink;
+    padding: 15px 20px;
+    font-size: 20px;
+    border-radius: 30px;
+    color: whitesmoke;
+    transition: .2s;
+}
+
+.backtohome input:hover {
+    border: solid 1px rgb(219, 115, 197);
+    background: whitesmoke;
+    color: black;
+}

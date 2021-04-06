@@ -1,0 +1,201 @@
+body {
+    background: white;
+}
+
+
+
+/* line 2, /Applications/MAMP/htdocs/old/palash/cl/shop_html/sass/_breadcrumb.scss */
+.breadcrumb_part {
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*background: linear-gradient(to right,#B08EAD,rgb(148, 78, 142))*/
+    background: pink
+}
+
+/* line 8, /Applications/MAMP/htdocs/old/palash/cl/shop_html/sass/_breadcrumb.scss */
+.breadcrumb_part .breadcrumb_iner {
+    text-align: center;
+}
+
+/* line 10, /Applications/MAMP/htdocs/old/palash/cl/shop_html/sass/_breadcrumb.scss */
+.breadcrumb_part .breadcrumb_iner h2 {
+    font-size: 90px;
+    line-height: 1.2;
+    color: #fff;
+    font-weight: 500;
+    font-family: 'Special Elite', cursive;
+    letter-spacing: 50px;
+}
+
+@media (max-width: 991px) {
+    /* line 10, /Applications/MAMP/htdocs/old/palash/cl/shop_html/sass/_breadcrumb.scss */
+    .breadcrumb_part .breadcrumb_iner h2 {
+        font-size: 30px;
+    }
+}
+
+/* PRODUCT LIST & SEARCH */
+.product_list {
+    margin-top: 60px;
+}
+.product_sidebar {
+    margin-top: 230px;
+}
+@media (max-width: 768px) {
+    .product_sidebar {
+        margin-top: 80px;
+        margin-bottom: 40px;
+    }
+}
+
+.product_sidebar .single_sedebar {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.product_sidebar .single_sedebar input {
+    background-color: #F4EDF2;
+    border-radius: 50px;
+    border: 1px solid #F4EDF2;
+    padding: 13px 25px;
+    width: 100%;
+    line-height: 22px;
+}
+
+.product_sidebar .single_sedebar ::placeholder {
+    color: #795376;
+}
+
+
+.product_sidebar .single_sedebar i {
+    position: absolute;
+    right: 30px;
+    top: 17px;
+}
+
+
+.select_option .select_option_list {
+    background-color: #F4EDF2;
+    border-radius: 50px;
+    border: 1px solid #F4EDF2;
+    padding: 13px 25px;
+    width: 100%;
+    line-height: 22px;
+    color: #795376;
+}
+
+
+.select_option .select_option_dropdown {
+    background-color: #F4EDF2;
+    border-radius: 10px;
+    border: 1px solid #F4EDF2;
+    padding: 13px 25px;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.select_option .select_option_dropdown a {
+    color: #795376;
+}
+
+
+.add-to-cart {
+    color: pink;
+    padding: 5px 20px;
+    background-color: black;
+    border: none;
+    border-radius: 30px;
+    font-family: 'Rancho', cursive;
+    text-transform: uppercase;
+    transition: .3s;
+}
+
+.add-to-cart:hover {
+    border: solid 1px rgb(219, 115, 197);
+    background-color: whitesmoke;
+    color: black;
+}
+
+.single_product_item {
+    text-align: center;
+    margin: 10px 0;
+}
+
+.single_product_item h3,p {
+    text-align: left;
+}
+
+.single_product_item h3 a:hover {
+    text-decoration: none;
+}
+
+.single_product_item h3 a{
+    color: black;
+    font-family: 'Economica', sans-serif;
+}
+.single_product_item p {
+    color: cornflowerblue;
+    font-weight: bold;
+}
+.banner {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    /* background-image: linear-gradient(to bottom right,#002f4b,##c986be); */
+    background-color: whitesmoke;
+    height: 100px;
+    background-size: cover;
+    background-position: center;
+    line-height: 100px;
+    font-size: 60px;
+    font-weight: bold;
+    /* color: #d5d7da; */
+    color: pink;
+    text-align: center;
+    box-shadow: 5px 5px 5px 5px #888888;
+    font-family: 'Bahianita', cursive;
+    letter-spacing: 5px;
+    font-style: italic;
+}
+
+.single_product_item h3 a {
+    width: 400px;
+}
+
+.product_sidebar {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 10px;
+}
+
+.sold-out {
+    color: white; 
+    background-color: red;
+    padding: 5px 20px;
+    border: none;
+    border-radius: 30px;
+    font-family: 'Rancho', cursive;
+    text-transform: uppercase;
+    transition: .3s;
+}
+
+.pro-image {
+    transition-duration: .5s;
+    transition-timing-function: ease;
+    width: 150px;
+    height: auto;
+}
+
+.pro-image:hover {
+    transform: scale(1.2);
+}
+#pagination {
+    background: white;
+    display: flex;
+    display: -webkit-flex; /* Safari 8 */
+    flex-wrap: wrap;
+    -webkit-flex-wrap: wrap; /* Safari 8 */
+    justify-content: center;
+    -webkit-justify-content: center;
+}

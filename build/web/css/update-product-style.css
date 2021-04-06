@@ -1,0 +1,55 @@
+.up-btn {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.up-btn input{
+    margin-right: 10px;
+}
+
+.edit-form {
+    display: flex;
+    justify-content: center;
+}
+.container {
+    justify-content: center;
+    display: flex;
+}
+.field {
+    width: 500px;
+    height: 30px;
+    margin-bottom: 10px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.update {
+    margin-top: 30px;
+    border: none;
+    outline: none;
+    padding: 7px 7px;
+    box-shadow: 2px 5px #bdb8d7;
+    background-color: pink;
+}
+
+.cancel {
+    margin-top: 30px;
+    border: none;
+    outline: none;
+    padding: 7px 7px;
+    box-shadow: 2px 5px black;
+    background-color: #3498db;
+    margin-left: 40px;
+}
+
+.drop-down {
+    height: 30px;
+    margin-bottom: 10px;
+}
+
+.header {
+    font-family: 'Anton', sans-serif;
+}

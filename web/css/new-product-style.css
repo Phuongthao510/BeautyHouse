@@ -1,0 +1,76 @@
+.add-product {
+    display: flex;
+    margin-left: 70px;
+    justify-content: center;
+}
+
+.add-product input {
+    width: 100px;
+}
+
+.submit {
+    margin-top: 30px;
+    border: none;
+    outline: none;
+    padding: 7px 7px;
+    box-shadow: 2px 5px #bdb8d7;
+    background-color: pink;
+    margin-right: 10px;
+}
+
+.submit:hover {
+    box-shadow: 2px 5px pink;
+    background-color: #bdb8d7;
+}
+
+.text-field {
+    height: 30px;
+    width: 500px;
+}
+
+#id {
+    width: 100px;
+}
+#name {
+    width: 400px;
+    margin-top: 30px;
+}
+
+#image {
+    width: 200px;
+    margin-top: 30px;
+}
+
+#price {
+    width: 90px;
+    margin-top: 30px;
+}
+
+#stock {
+    width: 150px;
+    margin-top: 30px;
+}
+
+.update {
+    
+}
+
+.drop-down {
+    height: 30px;
+    width: 140px;
+    margin-top: 30px;
+}
+
+.cancel {
+    margin-top: 30px;
+    border: none;
+    outline: none;
+    padding: 7px 7px;
+    box-shadow: 2px 5px black;
+    background-color: #3498db;
+}
+
+.button-outer {
+    display: flex;
+    justify-content: center;
+}
