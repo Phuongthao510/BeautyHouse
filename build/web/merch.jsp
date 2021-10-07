@@ -52,10 +52,10 @@
                 <ul class="menu">
                     <li class="logo"><a href="index.jsp"><img src="img/logo.jpg" alt=""></a></li>
                     <li class="item"><a href="getMerch">All Products</a></li>
-                    <li class="item"><a href="getMerch?name=Eye Makeup">Eye Makeup</a></li>
-                    <li class="item"><a href="getMerch?name=Face Makeup">Face Makeup</a></li>
-                    <li class="item"><a href="getMerch?name=LipStick">LipStick</a></li>
-                    <li class="item"><a href="getMerch?name=Lotion">Lotion</a></li>
+                    <li class="item"><a href="getMerch?name=eye">Eye Makeup</a></li>
+                    <li class="item"><a href="getMerch?name=fac">Face Makeup</a></li>
+                    <li class="item"><a href="getMerch?name=lip">LipStick</a></li>
+                    <li class="item"><a href="getMerch?name=lot">Lotion</a></li>
                         <c:if test="${sessionScope.visitor==null}">
                         <li class="item button"><a href="login.jsp">Log In</a></li>
                         <li class="item button secondary"><a href="signup.jsp">Sign Up</a></li>

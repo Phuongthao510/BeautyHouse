@@ -40,7 +40,7 @@ public class ProductDAO extends DBContext {
     public List<Product> getProductbyType(String type) {
         List<Product> list = new ArrayList<>();
         String sql = "select p.*, pt.tname\n"
-                + "from ProductType pt inner join Products p on pt.tid = p.typeid\n"
+                + "from ProductType pt join Products p on pt.tid = p.typeid\n"
                 + "where tname =?";
         try {
             PreparedStatement st = con.prepareStatement(sql);
@@ -58,59 +58,61 @@ public class ProductDAO extends DBContext {
     public ArrayList<Product> searchProduct(String name, String brand, double priceFrom, double priceTo, int pageIndex, int pageSize) {
         ArrayList<Product> products = new ArrayList<>();
         try {
-            String sql = "WITH r AS (SELECT ROW_NUMBER() OVER (ORDER BY pid DESC) rownum, pid, pname, [image], price, stock FROM dbo.Products WHERE 1 = 1";
-            HashMap<Integer, Object[]> params = new HashMap<>();
-            int paramCount = 0;
+//            String sql = "WITH r AS (SELECT ROW_NUMBER() OVER (ORDER BY pid DESC) rownum, pid, pname, [image], price, stock FROM Products WHERE 1 = 1";
+            String sql = "SELECT * FROM Products WHERE 1 = 1";
+//            HashMap<Integer, Object[]> params = new HashMap<>();
+//            int paramCount = 0;
             if (name != null && !name.trim().isEmpty()) {
-                sql += " AND pname LIKE '%' + ? + '%'";
-                paramCount++;
-                Object[] paramValues = new Object[2];
-                paramValues[0] = "STRING";
-                paramValues[1] = name;
-                params.put(paramCount, paramValues);
+                sql += " AND pname LIKE '%" + name + "%'";
+//                paramCount++;
+//                Object[] paramValues = new Object[2];
+//                paramValues[0] = "STRING";
+//                paramValues[1] = name;
+//                params.put(paramCount, paramValues);
             }
             if (!brand.equalsIgnoreCase("all")) {
-                sql += " AND brand = ?";
-                paramCount++;
-                Object[] paramValues = new Object[2];
-                paramValues[0] = "STRING";
-                paramValues[1] = brand;
-                params.put(paramCount, paramValues);
+                sql += " AND brand = '"+brand +"'";
+//                paramCount++;
+//                Object[] paramValues = new Object[2];
+//                paramValues[0] = "STRING";
+//                paramValues[1] = brand;
+//                params.put(paramCount, paramValues);
             }
             if (priceFrom >= 0) {
-                sql += " AND price >= ?";
-                paramCount++;
-                Object[] paramValues = new Object[2];
-                paramValues[0] = "DOUBLE";
-                paramValues[1] = priceFrom;
-                params.put(paramCount, paramValues);
+                sql += " AND price >= " + priceFrom;
+//                paramCount++;
+//                Object[] paramValues = new Object[2];
+//                paramValues[0] = "DOUBLE";
+//                paramValues[1] = priceFrom;
+//                params.put(paramCount, paramValues);
             }
             if (priceTo >= 0) {
-                sql += " AND price <= ?";
-                paramCount++;
-                Object[] paramValues = new Object[2];
-                paramValues[0] = "DOUBLE";
-                paramValues[1] = priceTo;
-                params.put(paramCount, paramValues);
+                sql += " AND price <= " + priceTo;
+//                paramCount++;
+//                Object[] paramValues = new Object[2];
+//                paramValues[0] = "DOUBLE";
+//                paramValues[1] = priceTo;
+//                params.put(paramCount, paramValues);
             }
-            sql += ") SELECT * FROM r WHERE r.rownum >= (? - 1) * ? + 1 AND r.rownum <= ? * ?";
+            sql += " LIMIT " + pageSize + " OFFSET " + pageIndex;
+            System.out.println(sql);
             PreparedStatement st = con.prepareStatement(sql);
-            for (Map.Entry<Integer, Object[]> values : params.entrySet()) {
-                Integer index = values.getKey();
-                Object[] value = values.getValue();
-                switch (value[0].toString()) {
-                    case "STRING":
-                        st.setString(index, value[1].toString());
-                        break;
-                    case "DOUBLE":
-                        st.setDouble(index, Double.parseDouble(value[1].toString()));
-                        break;
-                }
-            }
-            st.setInt(++paramCount, pageIndex);
-            st.setInt(++paramCount, pageSize);
-            st.setInt(++paramCount, pageIndex);
-            st.setInt(++paramCount, pageSize);
+//            for (Map.Entry<Integer, Object[]> values : params.entrySet()) {
+//                Integer index = values.getKey();
+//                Object[] value = values.getValue();
+//                switch (value[0].toString()) {
+//                    case "STRING":
+//                        st.setString(index, value[1].toString());
+//                        break;
+//                    case "DOUBLE":
+//                        st.setDouble(index, Double.parseDouble(value[1].toString()));
+//                        break;
+//                }
+//            }
+//            st.setInt(++paramCount, pageIndex);
+//            st.setInt(++paramCount, pageSize);
+//            st.setInt(++paramCount, pageIndex);
+//            st.setInt(++paramCount, pageSize);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Product p = new Product();
@@ -129,58 +131,58 @@ public class ProductDAO extends DBContext {
 
     public int getTotalSearchPro(String name, String brand, double priceFrom, double priceTo) {
         try {
-            String sql = "SELECT COUNT (*) FROM dbo.Products WHERE 1 = 1";
-            HashMap<Integer, Object[]> params = new HashMap<>();
-            int paramCount = 0;
+            String sql = "SELECT COUNT(*) FROM Products WHERE 1 = 1";
+//            HashMap<Integer, Object[]> params = new HashMap<>();
+//            int paramCount = 0;
             if (name != null && !name.trim().isEmpty()) {
-                sql += " AND pname LIKE ?";
-                paramCount++;
-                Object[] paramValues = new Object[2];
-                paramValues[0] = "STRING";
-                paramValues[1] = "%" + name + "%";
-                params.put(paramCount, paramValues);
+                sql += " AND pname LIKE '%" + name + "%'";
+//                paramCount++;
+//                Object[] paramValues = new Object[2];
+//                paramValues[0] = "STRING";
+//                paramValues[1] = "%" + name + "%";
+//                params.put(paramCount, paramValues);
             }
             if (!brand.equalsIgnoreCase("all")) {
-                sql += " AND brand = ?";
-                paramCount++;
-                Object[] paramValues = new Object[2];
-                paramValues[0] = "STRING";
-                paramValues[1] = brand;
-                params.put(paramCount, paramValues);
+                sql += " AND brand = '"+brand +"'";
+//                paramCount++;
+//                Object[] paramValues = new Object[2];
+//                paramValues[0] = "STRING";
+//                paramValues[1] = brand;
+//                params.put(paramCount, paramValues);
             }
             if (priceFrom >= 0) {
-                sql += " AND price >= ?";
-                paramCount++;
-                Object[] paramValues = new Object[2];
-                paramValues[0] = "DOUBLE";
-                paramValues[1] = priceFrom;
-                params.put(paramCount, paramValues);
+                 sql += " AND price >= " + priceFrom;
+//                paramCount++;
+//                Object[] paramValues = new Object[2];
+//                paramValues[0] = "DOUBLE";
+//                paramValues[1] = priceFrom;
+//                params.put(paramCount, paramValues);
             }
             if (priceTo >= 0) {
-                sql += " AND price <= ?";
-                paramCount++;
-                Object[] paramValues = new Object[2];
-                paramValues[0] = "DOUBLE";
-                paramValues[1] = priceTo;
-                params.put(paramCount, paramValues);
+                 sql += " AND price <= " + priceTo;
+//                paramCount++;
+//                Object[] paramValues = new Object[2];
+//                paramValues[0] = "DOUBLE";
+//                paramValues[1] = priceTo;
+//                params.put(paramCount, paramValues);
             }
             System.out.println(sql);
-            System.out.println(paramCount);
+//            System.out.println(paramCount);
             PreparedStatement st = con.prepareStatement(sql);
-            for (Map.Entry<Integer, Object[]> values : params.entrySet()) {
-                Integer index = values.getKey();
-                Object[] value = values.getValue();
-                switch (value[0].toString()) {
-                    case "STRING":
-                        st.setString(index, value[1].toString());
-                        System.out.println(value[1].toString());
-                        break;
-                    case "DOUBLE":
-                        st.setFloat(index, Float.parseFloat(value[1].toString()));
-                        System.out.println(value[1].toString());
-                        break;
-                }
-            }
+//            for (Map.Entry<Integer, Object[]> values : params.entrySet()) {
+//                Integer index = values.getKey();
+//                Object[] value = values.getValue();
+//                switch (value[0].toString()) {
+//                    case "STRING":
+//                        st.setString(index, value[1].toString());
+//                        System.out.println(value[1].toString());
+//                        break;
+//                    case "DOUBLE":
+//                        st.setFloat(index, Float.parseFloat(value[1].toString()));
+//                        System.out.println(value[1].toString());
+//                        break;
+//                }
+//            }
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
                 return rs.getInt(1);
@@ -209,7 +211,7 @@ public class ProductDAO extends DBContext {
 
     public int getProductStock(String typeID) {
         String sql = "select COUNT(tname)\n"
-                + "from Products p inner join ProductType pt on pt.tid = p.typeid\n"
+                + "from Products p join ProductType pt on pt.tid = p.typeid\n"
                 + "where typeid = ? ";
         try {
             PreparedStatement st = con.prepareStatement(sql);
@@ -244,7 +246,7 @@ public class ProductDAO extends DBContext {
     }
 
     public void removeProduct(String id) {
-        String sql = "DELETE FROM dbo.Products WHERE pid = ?";
+        String sql = "DELETE FROM Products WHERE pid = ?";
         try {
             PreparedStatement st = con.prepareStatement(sql);
             st.setString(1, id);
@@ -255,7 +257,7 @@ public class ProductDAO extends DBContext {
     }
 
     public void insertProduct(Product p) {
-        String sql = "INSERT INTO dbo.Products\n"
+        String sql = "INSERT INTO Products\n"
                 + "        ( pid ,pname ,typeid ,brand ,image ,price ,stock)\n"
                 + "VALUES  (?,?,?,?,?,?,? )";
         try {
@@ -276,16 +278,17 @@ public class ProductDAO extends DBContext {
     public ArrayList<Product> getProducts(String typeID, int pageIndex, int pageSize) {
         ArrayList<Product> products = new ArrayList<>();
         try {
-            String sql = "WITH r AS (SELECT ROW_NUMBER() OVER(ORDER BY pid) AS rownum, * FROM Products p inner join "
-                    + "ProductType pt on pt.tid = p.typeid\n"
-                    + "where tname = ? ) "
-                    + "SELECT * FROM r WHERE rownum >= (? - 1) * ? + 1 AND rownum <= ? * ?";
+//            String sql = "WITH r AS (SELECT ROW_NUMBER() OVER(ORDER BY pid) AS rownum, * FROM Products p  join "
+//                    + "ProductType pt on pt.tid = p.typeid\n"
+//                    + "where tname = ? ) "
+//                    + "SELECT * FROM r WHERE rownum >= (? - 1) * ? + 1 AND rownum <= ? * ?";
+            String sql = "SELECT * FROM Products where typeid = '" + typeID + "' LIMIT " + pageSize + " OFFSET " + pageIndex;
             PreparedStatement st = con.prepareStatement(sql);
-            st.setString(1, typeID);
-            st.setInt(2, pageIndex);
-            st.setInt(3, pageSize);
-            st.setInt(4, pageIndex);
-            st.setInt(5, pageSize);
+//            st.setString(1, typeID);
+//            st.setInt(2, pageIndex);
+//            st.setInt(3, pageSize);
+//            st.setInt(4, pageIndex);
+//            st.setInt(5, pageSize);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Product product = new Product();
@@ -306,14 +309,16 @@ public class ProductDAO extends DBContext {
 
     public ArrayList<Product> getProducts(int pageIndex, int pageSize) {
         ArrayList<Product> products = new ArrayList<>();
+
         try {
-            String sql = "WITH r AS (SELECT ROW_NUMBER() OVER(ORDER BY pid) AS rownum, * FROM Products) "
-                    + "SELECT * FROM r WHERE rownum >= (? - 1) * ? + 1 AND rownum <= ? * ?";
+//            String sql = "WITH r AS (SELECT ROW_NUMBER() OVER(ORDER BY pid) AS rownum, * FROM Products) "
+//                    + "SELECT * FROM r WHERE rownum >= (? - 1) * ? + 1 AND rownum <= ? * ?";
+            String sql = "SELECT * FROM Products LIMIT " + pageSize + " OFFSET " + pageIndex;
             PreparedStatement st = con.prepareStatement(sql);
-            st.setInt(1, pageIndex);
-            st.setInt(2, pageSize);
-            st.setInt(3, pageIndex);
-            st.setInt(4, pageSize);
+//            st.setInt(1, pageIndex);
+//            st.setInt(2, pageSize);
+//            st.setInt(3, pageIndex);
+//            st.setInt(4, pageSize);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Product product = new Product();
@@ -335,7 +340,7 @@ public class ProductDAO extends DBContext {
     public int getProductsCount() {
         int cnt = 0;
         try {
-            String sql = "SELECT COUNT(*) FROM dbo.Products ";
+            String sql = "SELECT COUNT(*) FROM Products ";
             PreparedStatement st = con.prepareStatement(sql);
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
@@ -350,7 +355,7 @@ public class ProductDAO extends DBContext {
     public int getProductsCount(String typeID) {
         int cnt = 0;
         try {
-            String sql = "SELECT COUNT(*) FROM dbo.Products p inner join ProductType pt on pt.tid = p.typeid\n"
+            String sql = "SELECT COUNT(*) FROM Products p join ProductType pt on pt.tid = p.typeid\n"
                     + "where tname = ? ";
             PreparedStatement st = con.prepareStatement(sql);
             st.setString(1, typeID);
@@ -363,4 +368,10 @@ public class ProductDAO extends DBContext {
         }
         return cnt;
     }
+
+    public static void main(String[] args) {
+        ProductDAO productDAO = new ProductDAO();
+        System.out.println(productDAO.getTotalSearchPro("Lime","all",1,500));
+    }
+
 }
