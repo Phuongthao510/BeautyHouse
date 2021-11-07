@@ -6,7 +6,7 @@
 package controller;
 
 import model.Cart;
-import model.User;
+import model.Customer;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -60,7 +60,7 @@ public class LogoutCustomerController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession(true);
-        User a = (User) session.getAttribute("visitor");
+        Customer a = (Customer) session.getAttribute("visitor");
         Cart cart = (Cart) session.getAttribute("cart");
         if (a != null) {
             session.removeAttribute("cart");

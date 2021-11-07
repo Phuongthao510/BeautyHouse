@@ -5,7 +5,7 @@
  */
 package dal;
 
-import model.User;
+import model.Customer;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,9 +14,9 @@ import java.sql.SQLException;
  *
  * @author Five Swag
  */
-public class UserDAO extends DBContext{
-    public void insert(User u){
-        String sql = "insert into Users values(?,?,?)";
+public class CustomerDAO extends DBContext{
+    public void insert(Customer u){
+        String sql = "insert into customer values(?,?,?)";
         try {
             PreparedStatement st = con.prepareStatement(sql);
             st.setString(1, u.getUsername());
@@ -27,16 +27,16 @@ public class UserDAO extends DBContext{
             e.printStackTrace();
         }
     }
-    public User getUser(String user, String pass){
-        User a = null;
-        String sql = "select * from Users where username = ? and password = ?";
+    public Customer getUser(String user, String pass){
+        Customer a = null;
+        String sql = "select * from customer where username = ? and password = ?";
         try {
             PreparedStatement st = con.prepareStatement(sql);
             st.setString(1, user);
             st.setString(2, pass);
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
-                a = new User(user, pass, rs.getString(3));
+                a = new Customer(user, pass, rs.getString(3));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -45,7 +45,7 @@ public class UserDAO extends DBContext{
     }
     
     public boolean isExsited(String username){
-        String sql ="select *  from users where username = ?";
+        String sql ="select *  from customer where username = ?";
         try {
             PreparedStatement st = con.prepareStatement(sql);
             st.setString(1, username);
@@ -58,15 +58,15 @@ public class UserDAO extends DBContext{
         return false;
     }
     
-    public User getUserbyUsername(String username){
-        User u = null;
-        String sql ="select *  from users where username = ?";
+    public Customer getUserbyUsername(String username){
+        Customer u = null;
+        String sql ="select *  from customer where username = ?";
         try {
             PreparedStatement st = con.prepareStatement(sql);
             st.setString(1, username);
             ResultSet rs=  st.executeQuery();
             if (rs.next()) {
-                u = new User(rs.getString(1), rs.getString(2), rs.getString(3));
+                u = new Customer(rs.getString(1), rs.getString(2), rs.getString(3));
             }
         } catch (Exception e) {
         }

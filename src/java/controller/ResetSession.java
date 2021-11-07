@@ -5,24 +5,39 @@
  */
 package controller;
 
-import dal.BrandDAO;
-import dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Product;
+import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author Five Swag
+ * @author Admin
  */
-public class SearchController extends HttpServlet {
-    
+@WebServlet(name = "ResetSession", urlPatterns = {"/ResetSession"})
+public class ResetSession extends HttpServlet {
+
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession(true);
+        session.invalidate();
+        response.sendRedirect("index.jsp");
+    }
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -35,28 +50,7 @@ public class SearchController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String page = request.getParameter("page");
-        page = page == null || page.trim().isEmpty() ? "1" : page;
-        int pageIndex = Integer.parseInt(page);
-        int pageSize = 6;
-        ProductDAO pdb = new ProductDAO();
-        BrandDAO bd = new BrandDAO();
-        String search = request.getParameter("search");
-        String brand = request.getParameter("brand");
-        double priceFrom = Double.parseDouble(request.getParameter("priceFrom"));
-        double priceTo = Double.parseDouble(request.getParameter("priceTo"));
-        ArrayList<Product> products = pdb.searchProduct(search, brand, priceFrom, priceTo, pageIndex, pageSize);
-        int totalProds = pdb.getTotalSearchPro(search, brand, priceFrom, priceTo);
-        int totalPages = totalProds % pageSize == 0 ? totalProds / pageSize : totalProds / pageSize + 1;
-        request.setAttribute("search", search);
-        request.setAttribute("brand", brand);
-        request.setAttribute("priceFrom", priceFrom);
-        request.setAttribute("priceTo", priceTo);
-        request.setAttribute("totalPages", totalPages);
-        request.setAttribute("aList", bd.getAllBrands());
-        request.setAttribute("pageIndex", pageIndex);
-        request.setAttribute("products", products);
-        request.getRequestDispatcher("search.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /**
@@ -70,6 +64,7 @@ public class SearchController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        processRequest(request, response);
     }
 
     /**

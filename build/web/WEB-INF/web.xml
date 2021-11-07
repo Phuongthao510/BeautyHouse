@@ -6,7 +6,7 @@
     </servlet>
     <servlet>
         <servlet-name>LoginAdminServlet</servlet-name>
-        <servlet-class>controller.LoginAdminController</servlet-class>
+        <servlet-class>controller.LoginManagerController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LogoutServlet</servlet-name>
@@ -22,7 +22,7 @@
     </servlet>
     <servlet>
         <servlet-name>LogoutAdminServlet</servlet-name>
-        <servlet-class>controller.LogoutAdminController</servlet-class>
+        <servlet-class>controller.LogoutManagerController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ViewStockServlet</servlet-name>

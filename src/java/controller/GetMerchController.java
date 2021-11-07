@@ -51,6 +51,7 @@ public class GetMerchController extends HttpServlet {
             noOfItems = list.size();
         }
         String type = request.getParameter("name");
+        
         String page = request.getParameter("page");
         page = (page == null || page.trim().isEmpty()) ? "1" : page;
         int pageIndex = Integer.parseInt(page);
@@ -68,6 +69,18 @@ public class GetMerchController extends HttpServlet {
             products = pdb.getProducts(type, pageIndex, pageSize);
             totalProducts = pdb.getProductsCount(type);
             totalPages = totalProducts % pageSize == 0 ? totalProducts / pageSize : totalProducts / pageSize + 1;
+        }
+         if (type.equals("eye")) {
+            type = "Eye Makeup";
+        }
+        if (type.equals("fac")) {
+            type = "Face Makeup";
+        }
+        if (type.equals("lip")) {
+            type = "LipStick";
+        }
+        if (type.equals("lot")) {
+            type = "Lotion";
         }
         request.setAttribute("totalPages", totalPages);
         request.setAttribute("pageIndex", pageIndex);

@@ -8,7 +8,7 @@ package dal;
 import model.Cart;
 import model.Item;
 import model.Product;
-import model.User;
+import model.Customer;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -27,7 +27,7 @@ import java.text.NumberFormat;
  */
 public class OrderDAO extends DBContext {
 
-    public void addOrder(User u, List<Item> list) {
+    public void addOrder(Customer u, List<Item> list) {
         LocalDate curDate = java.time.LocalDate.now();
         String date = curDate.toString();
         try {

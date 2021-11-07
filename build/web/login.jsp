@@ -30,8 +30,8 @@
             <div class="form-box">
                 <div class="button-box">
                     <div id="btn"></div>
-                    <button type="button" class="toggle-btn" onclick="loginuser()">User</button>
-                    <button type="button" class="toggle-btn" onclick="loginadmin()">Admin</button>
+                    <button type="button" class="toggle-btn" onclick="loginuser()">Beauty House</button>
+                    <!--<button type="button" class="toggle-btn" onclick="loginadmin()">Admin</button>-->
                 </div>
                 <div class="social-icons">
                     <img src="img/logo.jpg" alt="">
@@ -46,7 +46,7 @@
                         <a href="index.jsp">Cancel</a>
                     </li>
                 </form>
-                <form id="login-admin" action="loginAdmin" method = "post" class="input-group">
+<!--                <form id="login-admin" action="loginAdmin" method = "post" class="input-group">
                     <input type="text" class="input-field" name="username" placeholder="Account" required>
                     <input type="password" class="input-field" name="password" placeholder="Password" required>
                     <br/><br/>
@@ -54,7 +54,7 @@
                     <li class="items" id="loginAd">
                         <a href="index.jsp">Cancel</a>
                     </li>
-                </form>
+                </form>-->
 
             </div>
 
@@ -64,11 +64,11 @@
             var y = document.getElementById("login-admin");
             var z = document.getElementById("btn");
 
-            function loginadmin() {
-                x.style.left = "-400px";
-                y.style.left = "50px";
-                z.style.left = "110px";
-            }
+//            function loginadmin() {
+//                x.style.left = "-400px";
+//                y.style.left = "50px";
+//                z.style.left = "110px";
+//            }
             function loginuser() {
                 x.style.left = "50px";
                 y.style.left = "450px";

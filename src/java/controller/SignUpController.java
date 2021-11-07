@@ -5,14 +5,14 @@
  */
 package controller;
 
-import model.User;
+import model.Customer;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import dal.UserDAO;
+import dal.CustomerDAO;
 
 /**
  *
@@ -77,12 +77,12 @@ public class SignUpController extends HttpServlet {
         String repass = request.getParameter("repassword");
         String email = request.getParameter("email");
         String err = "";
-        UserDAO udb = new UserDAO();
+        CustomerDAO udb = new CustomerDAO();
         if (udb.isExsited(username)) {
             err = username + " already exists. Try another one!";
         }
         if (err.equalsIgnoreCase("")) {
-            User u = new User(username, password, email);
+            Customer u = new Customer(username, password, email);
             udb.insert(u);
             request.getRequestDispatcher("index.jsp").forward(request, response);
         } else {

@@ -5,7 +5,7 @@
  */
 package controller;
 
-import model.Admin;
+import model.Manager;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -13,13 +13,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import dal.AdminDAO;
+import dal.ManagerDAO;
 
 /**
  *
  * @author Five Swag
  */
-public class LoginAdminController extends HttpServlet {
+public class LoginManagerController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -75,8 +75,8 @@ public class LoginAdminController extends HttpServlet {
             throws ServletException, IOException {
         String u = request.getParameter("username");
         String p = request.getParameter("password");
-        AdminDAO adb = new AdminDAO();
-        Admin a = adb.getAdmin(u, p);
+        ManagerDAO adb = new ManagerDAO();
+        Manager a = adb.getAdmin(u, p);
         HttpSession session = request.getSession(true);
         if (a == null) {
             String err = u + " does not exist/ password is incorrect!";

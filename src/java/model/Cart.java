@@ -13,7 +13,7 @@ import dal.ProductDAO;
  * @author Five Swag
  */
 public class Cart {
-    private User user;
+    private Customer user;
     private List<Item> items;
 
     
@@ -21,13 +21,13 @@ public class Cart {
     }
 
 
-    public Cart(User user, List<Item> items) {
+    public Cart(Customer user, List<Item> items) {
         this.user = user;
         this.items = items;
     }
 
 
-    public void setUser(User user) {
+    public void setUser(Customer user) {
         this.user = user;
     }
 
@@ -36,7 +36,7 @@ public class Cart {
     }
 
 
-    public User getUser() {
+    public Customer getUser() {
         return user;
     }
 

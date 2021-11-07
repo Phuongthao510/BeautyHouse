@@ -9,16 +9,15 @@ package model;
  *
  * @author Five Swag
  */
-public class User {
-    private String username,password,email;
+public class Manager {
+    private String username,password;
 
-    public User() {
+    public Manager() {
     }
 
-    public User(String username, String password, String email) {
+    public Manager(String username, String password) {
         this.username = username;
         this.password = password;
-        this.email = email;
     }
 
     public void setUsername(String username) {
@@ -29,20 +28,12 @@ public class User {
         this.password = password;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getUsername() {
         return username;
     }
 
     public String getPassword() {
         return password;
-    }
-
-    public String getEmail() {
-        return email;
     }
     
     

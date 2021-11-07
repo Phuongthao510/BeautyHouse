@@ -7,7 +7,7 @@ package controller;
 
 import model.Cart;
 import model.Item;
-import model.User;
+import model.Customer;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -17,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import dal.OrderDAO;
-import dal.UserDAO;
+import dal.CustomerDAO;
 
 /**
  *
@@ -42,7 +42,7 @@ public class LogOutController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CheckOutServlet</title>");            
+            out.println("<title>Servlet CheckOutServlet</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet CheckOutServlet at " + request.getContextPath() + "</h1>");
@@ -79,23 +79,24 @@ public class LogOutController extends HttpServlet {
             throws ServletException, IOException {
         String username = request.getParameter("username");
         HttpSession session = request.getSession(true);
-        if(session.getAttribute("cart")!=null){
-            Cart cart = (Cart)session.getAttribute("cart");
+        if (session.getAttribute("cart") != null) {
+            Cart cart = (Cart) session.getAttribute("cart");
             OrderDAO odb = new OrderDAO();
             List<Item> listItem = cart.getItems();
-            UserDAO udb = new UserDAO();
-            User u = udb.getUserbyUsername(username);
-            if(listItem !=null || !listItem.isEmpty()){
+            CustomerDAO udb = new CustomerDAO();
+            Customer u = udb.getUserbyUsername(username);
+            if (listItem != null || !listItem.isEmpty()) {
                 odb.addOrder(u, listItem);
                 session.removeAttribute("cart");
                 response.sendRedirect("viewBill.jsp");
             } else {
                 response.getWriter().print("No item to add");
             }
-            
+
         } else {
             response.getWriter().print("Sorry no cart :(");
         }
+
     }
 
     /**

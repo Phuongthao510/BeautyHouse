@@ -5,7 +5,7 @@
  */
 package controller;
 
-import model.Admin;
+import model.Manager;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -18,7 +18,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author Five Swag
  */
-public class LogoutAdminController extends HttpServlet {
+public class LogoutManagerController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -59,7 +59,7 @@ public class LogoutAdminController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession(true);
-        Admin a = (Admin) session.getAttribute("admin");
+        Manager a = (Manager) session.getAttribute("admin");
         if (a != null) {
             session.removeAttribute("admin");
             response.sendRedirect("index.jsp");

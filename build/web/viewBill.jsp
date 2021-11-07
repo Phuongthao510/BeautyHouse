@@ -63,9 +63,9 @@
                     </div>
                 </div>
             </section>
-            <h3>Thanks, ${sessionScope.visitor.username} 😍😍</h3>
+            <h3>Thanks, ${sessionScope.visitor.username} 😍😍</h3>             
             <div class="backtohome">
-                <input type="button" value="Back to Homepage" onclick="location.href = 'index.jsp';">
+                <a href="ResetSession"><input type="button" value="Back to Homepage"></a>
             </div>
 
             <%@include file="part/footer.html" %>

@@ -26,8 +26,8 @@
             <h1>Sign Up</h1>
             <input type="text" name="username" value="${requestScope.user}" placeholder="Username" required>
             <input type="password" name="password" placeholder="Password" required>
-            <input type="text" name="email" placeholder="Email">
             <input type="password" name="repassword" placeholder="Confirm Password" required>
+            <input type="text" name="email" placeholder="Email">
             <input type="submit" name="" value="Sign Up">
             <a style="color: black; text-decoration: none" href="index.jsp">Cancel</a>
         </div>

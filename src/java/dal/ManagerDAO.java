@@ -5,7 +5,7 @@
  */
 package dal;
 
-import model.Admin;
+import model.Manager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,17 +14,17 @@ import java.sql.SQLException;
  *
  * @author Five Swag
  */
-public class AdminDAO extends DBContext{
-    public Admin getAdmin(String user, String pass){
-        Admin a = null;
-        String sql = "select * from Admins where username = ? and password = ?";
+public class ManagerDAO extends DBContext{
+    public Manager getAdmin(String user, String pass){
+        Manager a = null;
+        String sql = "select * from manager where username = ? and password = ?";
         try {
             PreparedStatement st = con.prepareStatement(sql);
             st.setString(1, user);
             st.setString(2, pass);
             ResultSet rs = st.executeQuery();
             if (rs.next()) {
-                a = new Admin(user, pass);
+                a = new Manager(user, pass);
             }
         } catch (SQLException e) {
             e.printStackTrace();

@@ -284,11 +284,6 @@ public class ProductDAO extends DBContext {
 //                    + "SELECT * FROM r WHERE rownum >= (? - 1) * ? + 1 AND rownum <= ? * ?";
             String sql = "SELECT * FROM Products where typeid = '" + typeID + "' LIMIT " + pageSize + " OFFSET " + pageIndex;
             PreparedStatement st = con.prepareStatement(sql);
-//            st.setString(1, typeID);
-//            st.setInt(2, pageIndex);
-//            st.setInt(3, pageSize);
-//            st.setInt(4, pageIndex);
-//            st.setInt(5, pageSize);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
                 Product product = new Product();
